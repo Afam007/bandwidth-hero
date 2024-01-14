@@ -6,7 +6,7 @@ function shouldCompress(imageType, size, isTransparent) {
     !imageType.startsWith("image") ||
     size === 0 ||
     (isTransparent && size < MIN_COMPRESS_LENGTH) ||
-    (!isTransparent && (imageType.endsWith("png") || imageType.endsWith("gif")) && size < MIN_TRANSPARENT_COMPRESS_LENGTH)
+    (!isTransparent && (imageType.endsWith("png") || imageType.endsWith("gif") || imageType.endsWith("webp")) && size < MIN_TRANSPARENT_COMPRESS_LENGTH)
   );
 }
 
