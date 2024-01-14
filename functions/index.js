@@ -1,5 +1,5 @@
+import fetch from 'node-fetch'
 const pick = require("../util/pick"),
-  fetch = require("node-fetch"),
   shouldCompress = require("../util/shouldCompress"),
   compress = require("../util/compress"),
   DEFAULT_QUALITY = 40;
