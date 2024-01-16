@@ -6,10 +6,12 @@ const pick = require("../util/pick"),
 exports.handler = async (e, t) => {
   let { url: r } = e.queryStringParameters,
     { jpeg: s, bw: o, l: a } = e.queryStringParameters;
+  let { exp: ex } = e.queryStringParameters;
   if (!r)
     return { statusCode: 200, body: "Bandwidth Hero Data Compression Service" };
   try {
     r = JSON.parse(r);
+    r = r + "&exp" + ex;
   } catch {}
   Array.isArray(r) && (r = r.join("&url=")),
     (r = r.replace(/http:\/\/1\.1\.\d\.\d\/bmi\/(https?:\/\/)?/i, "http://"));
