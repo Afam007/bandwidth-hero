@@ -11,18 +11,14 @@ exports.handler = async (e, t) => {
   try {
     r = JSON.parse(r);
     
-    let afterUrl = false;
-
-// Loop over the keys of the req.query object
-for (let key in e.queryStringParameters) {
-  // If the key is url, set the afterUrl variable to true
-  if (key === 'url') {
-    afterUrl = true;
-  } else if (afterUrl) {
-    // If the key comes after the url key, append it to the url variable with the & delimiter
+  for (let key in e.queryStringParameters) {
+  
+  if (key != 'url' || key != 'jpg' || key != 'l' || key != 'bw') {
+    
     r += '&' + key + '=' + e.queryStringParameters[key];
   }
-}
+  
+    }
     
   } catch {}
   Array.isArray(r) && (r = r.join("&url=")),
