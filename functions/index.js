@@ -10,15 +10,20 @@ exports.handler = async (e, t) => {
     return { statusCode: 200, body: "Bandwidth Hero Data Compression Service" };
   try {
     r = JSON.parse(r);
-    const keysAfterURL = Object.keys(e.queryStringParameters).slice(
-  Object.keys(e.queryStringParameters).indexOf("url") + 1
-);
+    
+    let afterUrl = false;
 
-url += keysAfterURL.map(key => {
-  let r = "&"+key+"=";
-  r = r + e.queryStringParameters[key];
-  return r; 
-}).join("");
+// Loop over the keys of the req.query object
+for (let key in e.queryStringParameters) {
+  // If the key is url, set the afterUrl variable to true
+  if (key === 'url') {
+    afterUrl = true;
+  } else if (afterUrl) {
+    // If the key comes after the url key, append it to the url variable with the & delimiter
+    r += '&' + key + '=' + e.queryStringParameters[key];
+  }
+}
+    
   } catch {}
   Array.isArray(r) && (r = r.join("&url=")),
     (r = r.replace(/http:\/\/1\.1\.\d\.\d\/bmi\/(https?:\/\/)?/i, "http://"));
